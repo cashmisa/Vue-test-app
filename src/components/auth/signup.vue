@@ -58,7 +58,9 @@
   </div>
 </template>
 <script>
-  import axios from 'axios'
+  import axios from '../../axios-auth'
+
+  import router from 'vue-router'
   export default {
     name: 'Signup',
     data () {
@@ -94,12 +96,14 @@
           terms: this.terms
         }
         console.log(formData)
-        axios.post('https://fir-ex-bfd10.firebaseio.com/users.json', formData)
+        axios.post('/users.json', formData)
           .then( res => {
             console.log('submitted to server')
             console.log(res)
           })
           .catch(err => console.log(err))
+        this.$router.push({name: 'Dashboard'})
+
       }
     }
   }
