@@ -5,14 +5,17 @@
     </div>
     <nav>
       <ul>
-        <li>
+        <li v-if="!isAuthenticated">
           <router-link :to="{name: 'SignUp'}" exact>Sign up</router-link>
         </li>
-        <li>
+        <li v-if="!isAuthenticated">
           <router-link :to="{name: 'SignIn'}" exact>Sign in</router-link>
         </li>
-        <li>
+        <li  v-if="isAuthenticated">
           <router-link :to="{name: 'Dashboard'}" exact>Dashboard</router-link>
+        </li>
+        <li>
+          <button v-if="isAuthenticated" class="logout" @click="onLogout">Logout</button>
         </li>
       </ul>
     </nav>
@@ -22,8 +25,17 @@
 <script>
 
 export default {
-  name: 'Header'
-
+  name: 'Header',
+  computed: {
+    isAuthenticated(){
+      return this.$store.getters.isAuthenticated
+    }
+  },
+  methods:{
+    onLogout(){
+      this.$store.dispatch('logout');
+    }
+  }
 }
 </script>
 
@@ -76,5 +88,13 @@ export default {
   li a:active,
   li a.router-link-active {
     color: #fa923f;
+  }
+
+  .logout{
+    background-color: transparent;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    color: white;
   }
 </style>
