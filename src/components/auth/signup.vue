@@ -93,7 +93,7 @@
           <label for="terms">Accept Terms of Use (not required for China)</label>
         </div>
         <hr>
-        <Percentage @percentageValidated = "percentageValidated=true"></Percentage>
+        <Percentage @percentageValidated = "validatePercentage"></Percentage>
         <hr>
         <div class="submit">
           <button type="submit" :disabled="$v.$invalid || !percentageValidated">Submit</button>
@@ -209,6 +209,9 @@ export default {
       };
       console.log(formData);
       this.$store.dispatch("signup", formData);
+    },
+    validatePercentage(payload){
+      this.percentageValidated = payload
     }
   }
 };

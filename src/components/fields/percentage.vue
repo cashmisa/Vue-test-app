@@ -8,7 +8,7 @@
                     <td>
                         <div class="input" :class="{ invalide: $v.amounts.$each[index].$error}">
                         <input class="form-control" type="number" v-model.lazy="amounts[index].value" 
-                        @blur="$v.amounts.$each[index].value.$touch()" @input="validatePercentage"/>
+                        @blur="validatePercentage(index)"/>
                         </div>
                         <div v-if="$v.amounts.$each[index].$error">
                         <small v-if="!$v.amounts.$each[index].value.required" class="text-danger">Required</small>
@@ -48,7 +48,6 @@ export default {
             }
         },
         roundup(){
-            
             return this.getSum() == 100? true : false
         }
       }
@@ -56,14 +55,14 @@ export default {
   methods:{
       getSum(){
         return this.amounts.reduce((a,b) => { return Number(b.value) == null? Number(a) : Number(a) + Number(b.value) }, 0)
-        // return this.amounts.reduce((a,b) => { return b.value + 0 == null? a + 0 : a + b.value + 0 }, 0)
       },
-      validatePercentage(){
-          console.log('no error? ', !this.$v.amounts.$error)
-          console.log('==100? ', this.getSum() == 100)
-          console.log('sum is: ', this.getSum())
+      validatePercentage(index){
+          this.$v.amounts.$each[index].value.$touch()
           if(!this.$v.amounts.$error && this.getSum() == 100){
-              this.$emit('percentageValidated');
+              this.$emit('percentageValidated', true);
+          }
+          else{
+              this.$emit('percentageValidated', false)
           }
       }
   },
