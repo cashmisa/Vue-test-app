@@ -6,10 +6,20 @@
                 <tr v-for="(amount, index) in amounts" :key="amounts[index].id">
                     <th>Amount {{index + 1}}</th>
                     <td>
-                        <div class="input" :class="{ invalide: $v.amounts.$each[index].$error}">
-                        <input class="form-control" type="number" step="0.01" max="100"
-                               v-model.lazy="amounts[index].value"
-                               @blur="validatePercentage(index)"/>
+                        <div class="input"
+                             :class="{ invalide: $v.amounts.$each[index].$error}">
+                        <!--<input class="form-control" type="number" -->
+                               <!--step="0.01" max="100"-->
+                               <!--v-model.lazy="amounts[index].value"-->
+                               <!--@blur="validatePercentage(index)"/>-->
+                          <VueNumeric class="form-control"
+                                      :min="0"
+                                      :max="100"
+                                      :minus="true"
+                                      :precision="2"
+                                      :empty-value="0"
+                                      @blur="validatePercentage(index)"
+                                      v-model.lazy="amounts[index].value"></VueNumeric>
                         </div>
                         <div v-if="$v.amounts.$each[index].$error">
                         <small v-if="!$v.amounts.$each[index].value.required" class="text-danger">Required</small>
@@ -26,9 +36,13 @@
     </div>
 </template>
 <script>
+  import VueNumeric from 'vue-numeric'
 import { required, numeric, minValue, between } from "vuelidate/lib/validators";
 export default {
   name: "percentage",
+  components:{
+    VueNumeric,
+  },
   data() {
     return {
         amounts: [
@@ -49,7 +63,7 @@ export default {
             }
         },
         roundup(){
-            return this.getSum() == 100? true : false
+            return this.getSum() == 100
         }
       }
   },

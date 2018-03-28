@@ -3,6 +3,7 @@
     <h1>That's the dashboard!</h1>
     <p class="text-warning">You should only get here if you're authenticated!</p>
     <div v-if="userEmail">
+      
     <h3>Your mail address is: </h3>
       <h2>{{userEmail}}</h2>
     </div>

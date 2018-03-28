@@ -6,10 +6,14 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import Vuelidate from 'vuelidate'
+import VueNumeric from 'vue-numeric'
+import VueTheMask from 'vue-the-mask'
 
 Vue.config.productionTip = false
 
 Vue.use(Vuelidate)
+Vue.use(VueNumeric)
+Vue.use(VueTheMask)
 
 axios.defaults.baseURL = 'https://fir-ex-bfd10.firebaseio.com'
 // const reqInterceptor = axios.interceptors.request.use(config => {
