@@ -11,11 +11,17 @@
         <li v-if="!isAuthenticated">
           <router-link :to="{name: 'SignIn'}" exact>Sign in</router-link>
         </li>
+        <li v-if="isAdmin">
+          <router-link :to="{name: 'Admin'}" exact>Admin</router-link>
+        </li>
         <li  v-if="isAuthenticated">
           <router-link :to="{name: 'Dashboard'}" exact>Dashboard</router-link>
         </li>
         <li>
           <button v-if="isAuthenticated" class="logout" @click="onLogout">Logout</button>
+        </li>
+        <li v-if="isAuthenticated">
+          <small class="text-info">Welcome, {{$store.getters.userEmail}}</small>
         </li>
       </ul>
     </nav>
@@ -28,7 +34,14 @@ export default {
   name: 'Header',
   computed: {
     isAuthenticated(){
+      console.log('>>>>checking from header: isAuthenticated? ',
+        this.$store.getters.isAuthenticated)
       return this.$store.getters.isAuthenticated
+    },
+    isAdmin(){
+      console.log('>>>>checking from header: isAdmin? ',
+        this.$store.getters.isAdmin)
+      return this.$store.getters.isAdmin
     }
   },
   methods:{
@@ -96,5 +109,8 @@ export default {
     font: inherit;
     cursor: pointer;
     color: white;
+  }
+  .text-info{
+    color: lightyellow;
   }
 </style>

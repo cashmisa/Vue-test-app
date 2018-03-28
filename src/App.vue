@@ -25,4 +25,8 @@ export default {
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  .container{
+    margin: 20px;
+    padding: 10px;
+  }
 </style>

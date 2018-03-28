@@ -7,13 +7,14 @@
                     <th>Amount {{index + 1}}</th>
                     <td>
                         <div class="input" :class="{ invalide: $v.amounts.$each[index].$error}">
-                        <input class="form-control" type="number" v-model.lazy="amounts[index].value" 
-                        @blur="validatePercentage(index)"/>
+                        <input class="form-control" type="number" step="0.01" max="100"
+                               v-model.lazy="amounts[index].value"
+                               @blur="validatePercentage(index)"/>
                         </div>
                         <div v-if="$v.amounts.$each[index].$error">
                         <small v-if="!$v.amounts.$each[index].value.required" class="text-danger">Required</small>
                         <small v-if="!$v.amounts.$each[index].value.between" class="text-danger">
-                            Must be between {{$v.amounts.$each[index].value.$params.between.min}} 
+                            Must be between {{$v.amounts.$each[index].value.$params.between.min}}
                             and {{$v.amounts.$each[index].value.$params.between.max}}</small>
                         </div>
                     </td>
@@ -21,7 +22,7 @@
                     <td colspan="2">
                     <small v-if="!$v.amounts.roundup" class="text-danger"> Must round up to 100% </small></td>
           </table>
-        </div>      
+        </div>
     </div>
 </template>
 <script>
@@ -71,7 +72,7 @@ export default {
         return 100 - this.getSum()
     },
   },
-  
+
 };
 </script>
 <style scoped>
