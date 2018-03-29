@@ -153,7 +153,7 @@ export default new Vuex.Store({
       else {
         globalAxios.get('/users.json' + '?auth=' + state.idToken)
           .then(res => { //res is object
-            //loop through users and store them in a local user array
+            //mock getting the correct user
             const data = res.data
             const users = []
             for (let key in data) {

@@ -207,7 +207,7 @@
         // sameAsPassword: sameAs('password')
         sameAsPassword: sameAs(vm => {
           return vm.password
-          //if you want to check if its the password + b or something
+          //this way so that if you want to check password + b or something
         })
       },
       terms: {

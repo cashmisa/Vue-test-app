@@ -84,7 +84,6 @@
 </template>
 <script>
   import { TheMask } from 'vue-the-mask'
-
   export default {
     components: {TheMask},
     data () {
@@ -105,14 +104,14 @@
     },
     methods: {
       updateLocale(){
-        if (this.invoiceLocale == 'cnInvoice'){
-          this.invoiceMask = "CN####-####"
+        if (this.invoiceLocale === 'cnInvoice'){
+          this.invoiceMask = 'CN####-####'
         }
         else{
-          this.invoiceMask = "SG####-####"
+          this.invoiceMask = 'SG####-####'
         }
       }
-    }
+    },
   }
 </script>
 <style scoped>
