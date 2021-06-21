@@ -1,6 +1,6 @@
 # axiosdemo
 
-> A Vue.js project
+> Not maintained as firebase db used for this app is deactivated
 
 ## Build Setup
 
