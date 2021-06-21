@@ -1,4 +1,4 @@
-# axiosdemo
+# Not maintained
 
 > Not maintained as firebase db used for this app is deactivated
 
